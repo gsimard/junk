@@ -79,6 +79,44 @@ bmiTell weight height
 initials :: String -> String -> String
 initials (f:_) (l:_) = [f] ++ ". " ++ [l] ++ "."
 
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^2
+    in  sideArea + 2 * topArea
+
+aSdf = (let a = 100; b = 200; c = 300; in a*b*c, let foo="Hey "; bar = "there!" in foo ++ bar)
+
+-- calcBmis :: (RealFloat a) => [(a, a)] -> [a]
+-- calcBmis xs = [bmi w h | (w, h) <- xs]
+--     where bmi weight height = weight / height ^ 2
+
 calcBmis :: (RealFloat a) => [(a, a)] -> [a]
-calcBmis xs = [bmi w h | (w, h) <- xs]
-    where bmi weight height = weight / height ^ 2
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi >= 25.0]
+
+zip' :: [a] -> [b] -> [(a,b)]
+zip' _ [] = []
+zip' [] _ = []
+zip' (x:xs) (y:ys) = (x,y):zip' xs ys
+
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' a [] = False
+elem' a (x:xs)
+    | a == x    = True
+    | otherwise = a `elem'` xs
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+          let low = quicksort [a | a <- xs, a <= x]
+              high = quicksort [a | a <- xs, a > x]
+              in low ++ [x] ++ high
+
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] _ = []
+zipWith' _ _ [] = []
+zipWith' f (x:xs) (y:ys) = map f x y : zipWith' f xs ys
+
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x:xs) = f x : map f xs

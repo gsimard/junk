@@ -1,9 +1,9 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: gdt.ps
 %%Creator: XCircuit v3.6 rev164
-%%CreationDate: Sat Mar 16 21:34:10 2013
+%%CreationDate: Sat Mar 16 21:38:49 2013
 %%Pages: 1
-%%BoundingBox: 68 68 212 135
+%%BoundingBox: 68 68 292 142
 %%DocumentNeededResources: font Helvetica Times-Roman 
 %%EndComments
 %%BeginProlog
@@ -224,6 +224,38 @@ begingate
 endgate
 } def
 
+/analog::source {
+% hidden
+begingate
+1 1.000 0 0 32 0.000 360.000 xcarc
+1 1.000 0 32 0 64 2 polygon
+1 1.000 0 -32 0 -64 2 polygon
+endgate
+} def
+
+/generic::arrowhead {
+% nonetwork
+begingate
+8 -28 beginpath
+3 -18 3 -15 0 0 curveto
+-3 -15 -3 -18 -8 -28 curveto
+-2 -26 2 -26 8 -28 curveto
+249 
+1.000 endpath
+endgate
+} def
+
+/analog::isource {
+begingate
+1.000 0 0 0 analog::source
+1 0.750 0 20 0 -8 2 polygon
+0.800 180 0 -20 generic::arrowhead
+1.000 0.000 0.000 scb
+(i.p) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(i.m) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+endgate
+} def
+
 
 %%EndSetup
 
@@ -231,31 +263,46 @@ endgate
 %%PageOrientation: Portrait
 /pgsave save def bop
 1.0000 inchscale
-2.6000 setlinewidth 182 176 translate
+2.6000 setlinewidth 176 176 translate
 
-1.000 0 320 96 analog::diode
-1.000 90 128 160 analog::resistor
-1.000 270 240 160 analog::inductor
-1 1.000 64 64 64 32 2 polygon
+1.000 0 480 96 analog::diode
+1.000 90 288 160 analog::resistor
+1.000 270 400 160 analog::inductor
+1 1.000 224 64 224 32 2 polygon
+1 1.000 192 16 208 32 2 polygon
+1 1.000 208 16 224 32 2 polygon
+1 1.000 224 16 240 32 2 polygon
+1 1.000 208 32 240 32 2 polygon
+1.000 90 224 128 generic::tap
+1.000 270 224 64 generic::tap
+1 1.000 208 128 240 128 240 64 208 64 208 128 5 polygon
+1 1.000 224 128 224 160 2 polygon
+-1.000 0 192 160 generic::circle
+1 1.000 192 160 224 160 2 polygon
+1 1.000 480 64 480 32 2 polygon
+1 1.000 448 16 464 32 2 polygon
+1 1.000 464 16 480 32 2 polygon
+1 1.000 480 16 496 32 2 polygon
+1 1.000 464 32 496 32 2 polygon
+1 1.000 464 160 480 160 2 polygon
+1 1.000 480 160 512 160 2 polygon
+1.000 0 512 160 generic::circle
+1 1.000 480 144 480 160 2 polygon
+1 1.000 448 96 464 112 2 polygon
+1 1.000 496 112 512 128 2 polygon
+1.000 270 112 160 analog::isource
+1 1.000 48 64 48 32 2 polygon
+1 1.000 16 16 32 32 2 polygon
 1 1.000 32 16 48 32 2 polygon
 1 1.000 48 16 64 32 2 polygon
-1 1.000 64 16 80 32 2 polygon
-1 1.000 48 32 80 32 2 polygon
-1.000 90 64 128 generic::tap
-1.000 270 64 64 generic::tap
-1 1.000 48 128 80 128 80 64 48 64 48 128 5 polygon
-1 1.000 64 128 64 160 2 polygon
--1.000 0 32 160 generic::circle
-1 1.000 32 160 64 160 2 polygon
-1 1.000 320 64 320 32 2 polygon
-1 1.000 288 16 304 32 2 polygon
-1 1.000 304 16 320 32 2 polygon
-1 1.000 320 16 336 32 2 polygon
-1 1.000 304 32 336 32 2 polygon
-1 1.000 304 160 320 160 2 polygon
-1 1.000 320 160 352 160 2 polygon
-1.000 0 352 160 generic::circle
-1 1.000 320 144 320 160 2 polygon
+1 1.000 32 32 64 32 2 polygon
+1 1.000 48 160 48 64 2 polygon
+1.000 0 576 96 analog::resistor
+1 1.000 528 160 576 160 2 polygon
+1 1.000 544 16 560 32 2 polygon
+1 1.000 560 16 576 32 2 polygon
+1 1.000 576 16 592 32 2 polygon
+1 1.000 560 32 592 32 2 polygon
 pgsave restore showpage
 
 %%Trailer
